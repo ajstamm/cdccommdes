@@ -1,0 +1,85 @@
+---
+title: "Tutorial: Calculate the Community Design poverty indicator"
+author: "Abigail Stamm"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tutorial: poverty indicator}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Introduction
+
+The purpose of this tutorial is to set up poverty data to create the NCDM traffic safety indicator, including: percent household poverty by census tract. It produces a data frame at the end.    
+
+     
+## Getting started 
+### Download your data
+
+To start, you will need to download your desired American Community Survey (ACS) data from the [US Census](https://www2.census.gov/geo/tiger/TIGER_DP/). Datasets on the site are organized by year. Click on each year of interest, then on the TRACT file with your state's FIPS code in its name. This will download the geodatabase. 
+
+Unzip the file. Explore the extracted file folder - some downloads may store the geodatabase files in another layer of file folders. 
+
+The code is designed to process only one geodatabase at a time. Other ACS geographies may also work, but they have not been tested.    
+
+    
+##Process the data in R or RStudio
+### Prepare the package
+
+First, load the community design package.
+
+```{r package, eval=FALSE}
+library(cdccommdes)
+# to learn more about the package, type 
+citation("cdccommdes")        # suggested citation
+browseVignettes("cdccommdes") # tutorials and documentation
+?cdccommdes                   # help files and about page
+```
+
+### Define your settings
+
+Next, define your settings, including file path, geodatabase name, and layer name (the table inside the geodatabase).
+
+```{r settings, eval=FALSE}
+# my file path
+# note the forward slashes (Windows users will need to change them manually)
+my_path <- "c:/my_projects/acs"
+# my state's census tract geodatabase, without the extensions
+my_gdb <- "ACS_2018_5YR_TRACT_36_NEW_YORK"
+my_layer <- "X17_POVERTY"    # table in the geodatabase
+```
+
+### Run the function
+
+Last, run the function that will create the indicator. Everything is bundled in the same function to make it easy to use. 
+
+The object produced, `f`, is a data.frame (R lingo for a data table) containing variables for number of households overall and in poverty and a percentage calculation. 
+
+```{r processing, eval=FALSE}
+# enter your settings from above
+f <- process_poverty(readpath = my_path, gdb_name = my_gdb, 
+                     layer_name = my_layer)
+```
+
+### Save your data
+
+A generic save function is included in the package if you want to use it. It can write four types of files: Rds, which is an R data object, XML, CSV, and shapefiles for spatial data. Users can indicate what kind of files to output by using TRUE or FALSE. The code below outputs all four file types. 
+
+
+```{r saving, eval=FALSE}
+# at this time, the XML file does not incorporate CDC metadata
+save_generic(filename = "tract_safety_indicators", dataset = f, 
+             savepath = my_path,
+             rds = TRUE, xml = TRUE,
+             shp = TRUE, csv = TRUE)
+```
+
+

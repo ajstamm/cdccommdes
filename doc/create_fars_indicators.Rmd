@@ -1,0 +1,77 @@
+---
+title: "Tutorial: Calculate the FARS traffic safety indicators"
+author: "Abigail Stamm"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tutorial: FARS indicators}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The purpose of this tutorial is to set up FARS data to create the NCDM traffic safety indicators, including: number of accidents, number of deaths, number of pedestrian deaths, and number of bicyclist deaths. It produces a data frame at the end.
+
+To start, you will need to download your data from the [FARS website](https://www.nhtsa.gov/node/97996/251). Datasets on the site are organized by year. Click on each year of interest, then on *National*, then download a zip file with a name like *FARS2019NationalCSV.zip*. You will need to do this for each year. Later, you will subset your state's data. The code is designed to cycle sequentially through all years you request, so missing years will cause an error. To avoid this, download all years between the earliest and latest year you want to include.
+
+Next, download your state's census tract file from the [US Census website](https://www.census.gov/cgi-bin/geo/shapefiles/index.php). County and census block should also work, but they have not been tested. 
+
+Unzip all files to the same folder. The folder should contain the following file structure:
+
+- FARS2015NationalCSV ... or equivalent for each year you downloaded 
+    - ACCIDENT.CSV
+    - PERSON.CSV
+    - PBTYPE.CSV
+    - ... other FARS files
+- tl_2010_36_tract10.shp ... or your tract file name
+- ... other FARS folders and tract files
+
+The code to process the data is short, but depending on the size of your state and the number of years you are processing, it may take a while to run. 
+
+First, load the community design package.
+
+```{r package, eval=FALSE}
+library(cdccommdes)
+# to learn more about the package, type 
+citation("cdccommdes")        # suggested citation
+browseVignettes("cdccommdes") # tutorials and documentation
+?cdccommdes                   # help files and about page
+```
+
+Next, define your settings, including file path, state specifics, and years.
+
+```{r settings, eval=FALSE}
+# my file path
+# note the forward slashes (Windows users will need to change them manually)
+my_path <- "c:/my_projects/fars"
+# my state's census tract shapefile, without the extensions
+my_tracts <- "tl_2010_36_tract10"
+my_fips <- 36         # state FIPS number
+my_years <- 2015:2018 # any vector of years (single years also work)
+                      # skipped years are untested
+geoid <- "GEOID10"    # shapefile ID number 
+```
+
+Last, run the function that will create the indicators. Everything is bundled in the same function to make it easy to use. The object produced, `f`, is a data.farme, or table, containing a variable for each traffic safety indicator, plus a couple extra variables like number of accidents for assessment. 
+
+```{r processing, eval=FALSE}
+# enter your settings from above
+f <- process_fars(readpath = my_path, shp_name = my_tracts, 
+                  years = my_years, tract_id = geoid, my_state = my_fips)
+```
+
+A generic save function is included in the package if you want to use it. It writes an XML file and an Rda object.
+
+```{r saving, eval=FALSE}
+# at this time, the XML file does not incorporate CDC metadata
+save_generic(filename = "tract_safety_indicators", dataset = f, 
+             savepath = my_path)
+```
+
+

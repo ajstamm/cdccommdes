@@ -1,0 +1,44 @@
+Package: cdccommdes
+Type: Package
+Title: Calculate Community Design CWG indicators
+Version: 0.1.4
+Date: 2022-04-19
+Authors@R: c(
+    person("Abigail", "Stamm", email = "abigail.stamm@health.ny.gov", 
+      role = c("cre", "aut"), comment = "author of R package"),
+    person("Margaret", "Horton", 
+      role = c("aut"), comment = "author of R package"),
+    person("Eric", "Main", 
+      role = c("ctb"), comment = "author of ArcGIS process documents"),
+    person("Richard", "Opiekun", 
+      role = c("ctb"), comment = "author of ArcGIS process documents"),
+    person("CDC Community Design Content Workgroup", 
+      role = c("ctb"), comment = "developed indicator concepts and definitions"),
+    person("Centers for Disease Control and Prevention", 
+      role = c("fnd"), comment = "Grant ???")
+    )
+Maintainer: Abigail Stamm <abigail.stamm@health.ny.gov>
+Description: 
+    This package provides functions to create the following NCDM indicators 
+    developed by the CDC Community Design Content Workgroup in 2018-2021:
+    Traffic fatality, Household poverty, Intersection density, Population 
+    density, and Vehicle miles traveled by Census tract. 
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 4.0.0)
+Imports: 
+    classInt,
+    dplyr,
+    kulife,
+    raster,
+    sf, 
+    stats,
+    terra,
+    utils,
+Suggests: 
+    knitr,
+RoxygenNote: 7.1.2
+VignetteBuilder: 
+    knitr
+Roxygen: list(markdown = TRUE)
