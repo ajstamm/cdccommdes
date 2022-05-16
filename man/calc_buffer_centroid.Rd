@@ -4,15 +4,12 @@
 \alias{calc_buffer_centroid}
 \title{Calculate buffer centroid}
 \usage{
-calc_buffer_centroid(area, width = 30, dissolve = TRUE)
+calc_buffer_centroid(area, width = 0)
 }
 \arguments{
 \item{area}{Point layer.}
 
 \item{width}{Buffer radius.}
-
-\item{dissolve}{Whether to merge overlapping buffers,
-but this option is slow.}
 }
 \description{
 Calculate the centroid for a set of very close intersections

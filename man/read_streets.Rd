@@ -4,12 +4,16 @@
 \alias{read_streets}
 \title{Read streets shapefile}
 \usage{
-read_streets(path, shp)
+read_streets(shp_path, shp_name, save_path = NULL)
 }
 \arguments{
-\item{path}{File path.}
+\item{shp_path}{String denoting absolute or relative path, which may
+include the geodatabase name, if relevant.}
 
-\item{shp}{Streets shapefile.}
+\item{shp_name}{String denoting the shapefile or geodatabase layer name.}
+
+\item{save_path}{String denoting the path to save the processed
+shapefile, if any.}
 }
 \description{
 This function reads in the streets shapefile, isolates only the street types

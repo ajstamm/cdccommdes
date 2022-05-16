@@ -30,21 +30,23 @@ process_fars <- function(readpath,shp_name,  years, tract_id,
   sum <- summarize_fars(fars = xy, tract = tract, my_state = my_state)
   # rejoin final to tract to create final SF?
   final <- dplyr::full_join(tract, sum, by = "GEOID")
+
   if (data_check) {
-    # plot(sf::st_geometry(final), col = "transparent", border = "blue")
-    # do your many points correspond with your higher counts?
-    graphics::par(mar=c(2.5,0,2,0), mgp = c(0, 0, 0), xpd = TRUE)
+    # do more points correspond with higher counts?
+    # graphics::par(mar=c(2.5,0,2,0), mgp = c(0, 0, 0), xpd = TRUE)
     cols <- c("#fff7bc", "#fec44f", "#d95f0e")
     cls <- classInt::classIntervals(final$DeathsAll, style = "fixed",
                                     n = length(unique(final$DeathsAll)))
     colcode <- classInt::findColours(cls, cols)
-    terra::plot(sf::st_geometry(final), col = colcode, border = "#969696",
-                main = "Choropleth of all deaths")
-    # do your points overlap your tracts?
-    terra::plot(sf::st_geometry(xy), pch = 20, add = TRUE, cex = 0.5,
-                col = grDevices::rgb(0, 69, 41, max = 255, alpha = 130)) # "#004529"
-    graphics::par(mar=c(5,4,4,2)+.1, mgp = c(3, 1, 0))
-    # should add a legend, too, but don't feel like coding it right now
+
+    l <- leaflet::leaflet(final)
+    l <- leaflet::addProviderTiles(l, leaflet::providers$OpenTopoMap)
+    l <- leaflet::addPolygons(l, data = final, label = ~GEOID, color = "grey",
+                              fillColor = colcode, weight = 1,
+                              opacity = 0.8, fillOpacity = 0.7)
+    l <- leaflet::addMarkers(l, data = xy, label = ~ST_CASE,
+                             clusterOptions = leaflet::markerClusterOptions())
+    print(l)
   }
   return(final)
 }

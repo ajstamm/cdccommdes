@@ -4,6 +4,16 @@ This package was developed by Abigail Stamm (NYS) with coding and documentation 
 
 In attempts to compile the package, all traffic safety functions (FARS and poverty) have been converted to sf. I left sp and rgeos out of imports, since I want to remove all reference to them, so at the moment, I still get a warning that they should be imported since not all intersection density functions have been converted yet. If you compile the package, please ignore this for now - or convert that bit to sf. I also removed the magrittr import - I'll see if it throws any errors.
 
+Working and converted to sf:
+
+* All FARS and poverty functions. To access them, run:
+    * `process_fars()`: calculate vehicle-related deaths by tract
+    * `process_poverty()`: calculate poverty by tract
+* The following intersection density functions (not yet exported as the indicator is incomplete):
+    * `read_land_areas()`: read in protected land
+    * `read_water_areas()`: read in all water bodies
+    * read_streets()
+
 Needed updates:
 
 * convert count_intersection.R to sf

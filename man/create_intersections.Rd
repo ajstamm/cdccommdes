@@ -4,13 +4,15 @@
 \alias{create_intersections}
 \title{Create road intersections}
 \usage{
-create_intersections(path, shp)
+create_intersections(shp, save_path = NULL)
 }
 \arguments{
-\item{path}{File path.}
+\item{shp}{Cleaned streets layer.}
 
-\item{shp}{Shapefile name.}
+\item{save_path}{String denoting the path to save the processed
+shapefile, if any.}
 }
 \description{
-Create the road intersections.
+Create the road intersections. This function takes a long time to run due
+to the massive size of road shapefiles.
 }

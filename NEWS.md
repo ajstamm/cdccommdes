@@ -1,3 +1,10 @@
+# cdccommdes v0.1.5
+
+* Standardized function names and options for `read_streets()`, `read_water_areas()`, and `read_land_areas()`. Added option to save the resulting layer for all three.
+* Changed map drawn in `process_fars()` data check from base R to leaflet.
+
+
+
 # cdccommdes v0.1.4 (2022-04-19)
 
 * Made data check map in `process_fars()` more informative by adding an underlying choropleth.
