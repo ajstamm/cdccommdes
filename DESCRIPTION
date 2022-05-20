@@ -26,12 +26,13 @@ Description:
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Depends: R (>= 4.0.0)
+Depends: R (>= 4.1.0)
 Imports: 
     classInt,
     dplyr,
-    kulife,
+    xml2,
     raster,
+    methods,
     sf, 
     leaflet,
     utils,

@@ -1,5 +1,6 @@
 # Package structure functions ----
 # copied and modified from gatpkg
+#' @import      methods
 
 # settings when package is loaded (by calling library())
 # or by calling devtools::load_all?

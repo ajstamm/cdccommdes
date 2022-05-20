@@ -36,7 +36,7 @@ save_generic <- function(dataset, filename, savepath, rds = TRUE, xml = FALSE,
   }
   if (xml) {
     d <- data.frame(dataset)
-    kulife::write.xml(d, paste0(file_path, ".xml"))
+    xml2::write_xml(d, paste0(file_path, ".xml"))
   }
   if (csv) {
     d <- data.frame(dataset)

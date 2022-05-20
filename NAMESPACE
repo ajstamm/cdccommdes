@@ -3,3 +3,4 @@
 export(process_fars)
 export(process_poverty)
 export(save_generic)
+import(methods)
