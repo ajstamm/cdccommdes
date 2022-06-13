@@ -2,7 +2,7 @@
 
 This package was developed by Abigail Stamm (NYS) with coding and documentation assistance from Eleni Mora (UT) and Margaret Horton (CO). At present, it includes the traffic fatality and poverty indicators, which both are functional, but require further testing. 
 
-In attempts to compile the package, all traffic safety functions (FARS and poverty) have been converted to sf. I left sp and rgeos out of imports, since I want to remove all reference to them, so at the moment, I still get a warning that they should be imported since not all intersection density functions have been converted yet. If you compile the package, please ignore this for now - or convert that bit to sf. I also removed the magrittr import - I'll see if it throws any errors.
+In attempts to compile the package, all traffic safety functions (FARS and poverty) have been converted to sf. I removed the magrittr import - I'll see if it throws any errors.
 
 Working and converted to sf:
 
@@ -37,4 +37,6 @@ Needed updates:
     * Who will maintain it?
 
 
+## Acknowledgements
 
+The development of this package would not have been possible without the support of the Centers for Disease Control and Prevention (CDC) National Environmental Health Tracking Program (NEPHT), especially the Community Design Content Workgroup. Its content is solely the responsibility of the authors and does not necessarily represent the official views of the CDC.

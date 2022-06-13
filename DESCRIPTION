@@ -12,10 +12,12 @@ Authors@R: c(
       role = c("ctb"), comment = "author of ArcGIS process documents"),
     person("Richard", "Opiekun", 
       role = c("ctb"), comment = "author of ArcGIS process documents"),
-    person("CDC Community Design Content Workgroup", 
+    person("Aaron", "Vinson", 
+      role = c("ctb"), comment = "CDC liaison"),
+    person("Community Design Content Workgroup", 
       role = c("ctb"), comment = "developed indicator concepts and definitions"),
     person("Centers for Disease Control and Prevention", 
-      role = c("fnd"), comment = "Grant ???")
+      role = c("fnd", "cph"), comment = "Environmental Public Health Tracking")
     )
 Maintainer: Abigail Stamm <abigail.stamm@health.ny.gov>
 Description: 
