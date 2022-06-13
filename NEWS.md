@@ -2,6 +2,7 @@
 
 * Standardized function names and options for `read_streets()`, `read_water_areas()`, and `read_land_areas()`. Added option to save the resulting layer for all three.
 * Changed map drawn in `process_fars()` data check from base R to leaflet.
+* Rewrote `process_fars()` to use the same `read_tract()` function as the AADT indicator, which uses the tigris package.
 
 
 

@@ -5,26 +5,23 @@
 #' format you desire.
 #'
 #' @param readpath   String denoting your absolute or relative file path.
-#' @param shp_name   String denoting the name of the shapefile.
 #' @param years      Vector of years for which you have data.
-#' @param tract_id   String denoting the variable name for the 11-digit tract
-#'                   number.
 #' @param my_state   State FIPS code.
 #' @param data_check Boolean that indicates whether or not R should produce a
 #'                   simple map at the end that overlays accident locations on
 #'                   census tracts.
+#' @param tract_year Number denoting census tract vintage.
 #'
 #' If you include the data check, plotting may be a bit slow.
 #'
 #' @export
 
 
-process_fars <- function(readpath,shp_name,  years, tract_id,
-                         my_state, data_check = FALSE) {
+process_fars <- function(readpath, years, my_state, data_check = FALSE,
+                         tract_year = 2010) {
   all_deaths <- read_fars(filepath = readpath, years = years,
                           my_state = my_state)
-  tract <- read_fars_tract(filepath = readpath, shp_name = shp_name,
-                           id = tract_id)
+  tract <- read_tract(my_state = my_state, year = tract_year)
   xy <- join_fars(fars = all_deaths, tract = tract)
   # to this point, object is SF
   sum <- summarize_fars(fars = xy, tract = tract, my_state = my_state)

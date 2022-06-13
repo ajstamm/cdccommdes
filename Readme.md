@@ -13,21 +13,25 @@ Working and converted to sf:
     * `read_land_areas()`: read in protected land
     * `read_water_areas()`: read in all water bodies
     * read_streets()
+* The following VMT functions (not yet exported as the indicator is incomplete):
+    * `read_tracts()`: read census tracts
+    * `prep_arc_aadt()`: read ArcGIS Online data
 
 Needed updates:
 
+* in `save_generic()` the XML portion broke and will give an error - it needs to be investigated
 * convert count_intersection.R to sf
 * add Roxygen for some functions (note which ones)
 * add examples for key (exported) functions (`process_fars`, `process_poverty`, `save_generic` so far)
 * add option for using FARS API in `read_fars` (and, correspondingly, `process_fars`)
 * add and/or revise vignettes (only traffic safety and poverty done, but they're bare-bones)
 * flesh out the package help page (if you type `?cdccommdes`)
+* add acknowledgements, funder, license as CDC
     * will need feedback from others on authorship and attribution (see [gatpkg](https://ajstamm.github.io/gatpkg/docs/dev/reference/gatpkg.html) for an example)
-* figure out the license (I have copied [GAT's MIT license](https://github.com/ajstamm/gatpkg/blob/master/LICENSE), but who is the copyright holder?)
+    * figure out the license (I have copied [GAT's MIT license](https://github.com/ajstamm/gatpkg/blob/master/LICENSE), but who is the copyright holder?)
 * decide on the package name 
-    * will take a little while to overhaul everything
-    * maybe have something to do with traffic or transportation, and not be based on the group name
-    * or plan to expand the package as more indicators are added
+    * would take a little while to overhaul everything
+    * plan to expand the package as more indicators are added
 * Package future
     * Who will host it?
     * Who will maintain it?

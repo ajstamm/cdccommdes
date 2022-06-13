@@ -12,7 +12,7 @@
 #' [US Census](https://www.census.gov/cgi-bin/geo/shapefiles/index.php)
 #' and place it in the folder denoted in your filepath. Check which variable
 #' contains the 11-digit tract number to place in the id option.
-
+# obsolete
 
 # Place the tract-level shapefile you downloaded from the census website in
 # the same folder as the unzipped FARS data folders. Note the name of the
@@ -23,3 +23,5 @@ read_fars_tract <- function(filepath, shp_name, id) {
   tract <- dplyr::rename(tract, GEOID = !!dplyr::sym(id))
   return(tract)
 }
+
+

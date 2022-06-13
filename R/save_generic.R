@@ -25,6 +25,8 @@
 #' Generator to collect information (plan to shamelessly steal from GAT's GUI).
 #'
 #' @export
+#'
+# I was having issues writing to XML, so this feature/option still needs work
 
 save_generic <- function(dataset, filename, savepath, rds = TRUE, xml = FALSE,
                          shp = FALSE, csv = TRUE) {
