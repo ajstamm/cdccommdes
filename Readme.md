@@ -19,6 +19,7 @@ Working and converted to sf:
 
 Needed updates:
 
+* Look into using the package `osmdata` to read OpenStreetMap?
 * in `save_generic()` the XML portion broke and will give an error - it needs to be investigated
 * convert count_intersection.R to sf
 * add Roxygen for some functions (note which ones)
