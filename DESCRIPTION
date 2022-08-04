@@ -1,8 +1,8 @@
 Package: cdccommdes
 Type: Package
 Title: Calculate Community Design CWG indicators
-Version: 0.1.5
-Date: 2022-05-16
+Version: 0.1.6
+Date: 2022-08-04
 Authors@R: c(
     person("Abigail", "Stamm", email = "abigail.stamm@health.ny.gov", 
       role = c("cre", "aut"), comment = "author of R package"),
@@ -30,6 +30,7 @@ Encoding: UTF-8
 LazyData: true
 Depends: R (>= 4.1.0)
 Imports: 
+    arcpullr,
     classInt,
     dplyr,
     xml2,
