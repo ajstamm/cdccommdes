@@ -1,6 +1,6 @@
 Package: cdccommdes
 Type: Package
-Title: Calculate Community Design CWG indicators
+Title: Community Design Indicator Processing Package (CDIPP)
 Version: 0.1.5
 Date: 2022-05-16
 Authors@R: c(
