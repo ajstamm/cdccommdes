@@ -43,5 +43,5 @@ including:
 At some point, this function will be revised to add a header to the
 beginning of the XML file, probably by reading in a standard text file
 containing the header code or producing a basic pop-up like the XML
-Generator to collect information (plan to shamelessly steal from GAT's GUI).
+Generator to collect information.
 }

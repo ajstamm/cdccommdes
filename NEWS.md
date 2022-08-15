@@ -1,11 +1,14 @@
-# cdccommdes v0.1.5
+# cdccommdes v0.1.6
+
+* Removed dependency on kulife package as it does not work with R v4.2.
+* Addressed warnings in `read_tract()` and `prep_arc_aadt()`.
+
+# cdccommdes v0.1.5 (2022-05-16)
 
 * Standardized function names and options for `read_streets()`, `read_water_areas()`, and `read_land_areas()`. Added option to save the resulting layer for all three.
 * Changed map drawn in `process_fars()` data check from base R to leaflet.
 * Rewrote `process_fars()` to use the same `read_tract()` function as the AADT indicator, which uses the tigris package.
 * Updated license and copyright information.
-
-
 
 # cdccommdes v0.1.4 (2022-04-19)
 
