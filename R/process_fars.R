@@ -19,12 +19,12 @@
 
 process_fars <- function(readpath, years, my_state, data_check = FALSE,
                          tract_year = 2010) {
-  all_deaths <- read_fars(filepath = readpath, years = years,
+  all_deaths <- cdccommdes:::read_fars(filepath = readpath, years = years,
                           my_state = my_state)
-  tract <- read_tract(my_state = my_state, year = tract_year)
-  xy <- join_fars(fars = all_deaths, tract = tract)
+  tract <- cdccommdes:::read_tract(my_state = my_state, year = tract_year)
+  xy <- cdccommdes:::join_fars(fars = all_deaths, tract = tract)
   # to this point, object is SF
-  sum <- summarize_fars(fars = xy, tract = tract, my_state = my_state)
+  sum <- cdccommdes:::summarize_fars(fars = xy, tract = tract, my_state = my_state)
   # rejoin final to tract to create final SF?
   final <- dplyr::full_join(tract, sum, by = "GEOID")
 
