@@ -2,6 +2,8 @@
 
 * Removed dependency on kulife package as it does not work with R v4.2.
 * Addressed warnings in `read_tract()` and `prep_arc_aadt()`.
+* Changed FARS and tract variable names to lower case when reading in to simplify code.
+* Aligned all variable names in the final FARS dataset with the revised how-to guide.
 
 # cdccommdes v0.1.5 (2022-05-16)
 

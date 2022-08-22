@@ -7,7 +7,7 @@
 save_generic(
   dataset,
   filename,
-  savepath,
+  savepath = "",
   rds = TRUE,
   xml = FALSE,
   shp = FALSE,

@@ -28,11 +28,17 @@
 #' @export
 #'
 # I was having issues writing to XML, so this feature/option still needs work
+# writing to shapefile requires a filepath, so if it's blank, I created one
 
-save_generic <- function(dataset, filename, savepath, rds = TRUE, xml = FALSE,
-                         shp = FALSE, csv = TRUE) {
-  file_name <- paste(filename, "_", Sys.Date()) # filename without extension
+save_generic <- function(dataset, filename, savepath = "", rds = TRUE,
+                         xml = FALSE, shp = FALSE, csv = TRUE) {
+  file_name <- paste(filename, Sys.Date(), sep = "_") # filename without extension
+  if (savepath == "") {
+    savepath <- "saves"
+  }
+  savepath <- gsub("/$", "", savepath)
   file_path <- paste(savepath, file_name, sep = "/") # file path & name
+
   if (rds) {
     # save object as is (could be DF or SF)
     saveRDS(dataset, paste0(file_path, ".Rds"))

@@ -14,8 +14,8 @@
 # Joining deaths and tracts may take several minutes.
 join_fars <- function(fars, tract) {
   # plot fatality coordinates
-  xy <- sf::st_as_sf(fars, coords = c("LONGITUD", "LATITUDE"),
-                     crs = raster::crs(tract))
+  xy <- sf::st_as_sf(fars, coords = c("longitud", "latitude"),
+                     crs = sf::st_crs(tract))
   # intersect the two sf objects
   # this assigns tracts to point-level data
   # note the warning, but in my experience, it can generally be ignored

@@ -15,10 +15,9 @@
 
 read_tract <- function(my_state, year = 2010) {
   g <- tigris::tracts(state = my_state, year = year)
-  if ("GEOID10" %in% names(g)) {
-    g <- dplyr::mutate(g, geoid = !!dplyr::sym("GEOID10"))
-  } else {
-    g <- dplyr::mutate(g, geoid = !!dplyr::sym("GEOID"))
+  g <- dplyr::rename_all(g, tolower)
+  if ("geoid10" %in% names(g)) {
+    g <- dplyr::mutate(g, geoid = !!dplyr::sym("geoid10"))
   }
   g <- dplyr::select(g, !!dplyr::sym("geoid"))
   g <- dplyr::mutate(g, id = dplyr::row_number())

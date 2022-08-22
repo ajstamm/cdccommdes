@@ -19,21 +19,29 @@
 
 process_fars <- function(readpath, years, my_state, data_check = FALSE,
                          tract_year = 2010) {
-  all_deaths <- cdccommdes:::read_fars(filepath = readpath, years = years,
+  all_deaths <- read_fars(filepath = readpath, years = years,
                           my_state = my_state)
-  tract <- cdccommdes:::read_tract(my_state = my_state, year = tract_year)
-  xy <- cdccommdes:::join_fars(fars = all_deaths, tract = tract)
+  tract <- read_tract(my_state = my_state, year = tract_year)
+  xy <- join_fars(fars = all_deaths, tract = tract)
   # to this point, object is SF
-  sum <- cdccommdes:::summarize_fars(fars = xy, tract = tract, my_state = my_state)
+  sum <- summarize_fars(fars = xy, tract = tract, my_state = my_state)
   # rejoin final to tract to create final SF?
-  final <- dplyr::full_join(tract, sum, by = "GEOID")
+  final <- dplyr::full_join(tract, sum, by = "geoid")
+  final <- dplyr::rename(final, GEOID = !!dplyr::sym("geoid"),
+                         DeathsCycle = !!dplyr::sym("DeathsCyc"),
+                         Deaths = !!dplyr::sym("DeathsAll"))
+  final <- dplyr::select(final, !!dplyr::sym("RowIdentifier"),
+                         !!dplyr::sym("GEOID"), !!dplyr::sym("Accidents"),
+                         !!dplyr::sym("Deaths"), !!dplyr::sym("DeathsPed"),
+                         !!dplyr::sym("DeathsCycle"), !!dplyr::sym("Year"))
+
 
   if (data_check) {
     # do more points correspond with higher counts?
     # graphics::par(mar=c(2.5,0,2,0), mgp = c(0, 0, 0), xpd = TRUE)
     cols <- c("#fff7bc", "#fec44f", "#d95f0e")
-    cls <- classInt::classIntervals(final$DeathsAll, style = "fixed",
-                                    n = length(unique(final$DeathsAll)))
+    cls <- classInt::classIntervals(final$Deaths, style = "fixed",
+                                    n = length(unique(final$Deaths)))
     colcode <- classInt::findColours(cls, cols)
 
     l <- leaflet::leaflet(final)
@@ -41,7 +49,7 @@ process_fars <- function(readpath, years, my_state, data_check = FALSE,
     l <- leaflet::addPolygons(l, data = final, label = ~GEOID, color = "grey",
                               fillColor = colcode, weight = 1,
                               opacity = 0.8, fillOpacity = 0.7)
-    l <- leaflet::addMarkers(l, data = xy, label = ~ST_CASE,
+    l <- leaflet::addMarkers(l, data = xy, label = ~st_case,
                              clusterOptions = leaflet::markerClusterOptions())
     print(l)
   }

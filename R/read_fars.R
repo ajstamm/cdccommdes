@@ -65,5 +65,7 @@ read_fars <- function(filepath, years, my_state) {
            died_cycle = !!dplyr::sym("died") & !!dplyr::sym("PBPTYPE") %in% 6:7)
   all <- dplyr::filter(all, !!dplyr::sym("died"),      # only deaths
                        !!dplyr::sym("LONGITUD") < 0) # only valid coordinates
+  all <- dplyr::rename_all(all, tolower)
+  #---- return ----
   return(all)
 }
