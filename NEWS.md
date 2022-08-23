@@ -1,9 +1,10 @@
 # cdccommdes v0.1.6
 
-* Removed dependency on kulife package as it does not work with R v4.2.
+* Removed dependency on kulife package as it does not work with R v4.2. (Need to find or create an XML exporter that is not buggy.)
 * Addressed warnings in `read_tract()` and `prep_arc_aadt()`.
 * Changed FARS and tract variable names to lower case when reading in to simplify code.
-* Aligned all variable names in the final FARS dataset with the revised how-to guide.
+* Aligned all variable names in the final FARS and poverty datasets with the revised how-to guide.
+* Revised FARS vignette to use revised functions and included example code to show the data check map.
 
 # cdccommdes v0.1.5 (2022-05-16)
 

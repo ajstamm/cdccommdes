@@ -94,10 +94,12 @@ f <- process_fars(readpath = my_path, years = my_years,
                   my_state = my_fips, data_check = TRUE)
 ```
 
+> Add a screenshot of the leaflet map, for example?
+
 
 ### Save your data
 
-A generic save function is included in the package if you want to use it. It can write four types of files: Rds, an R file format, XML, CSV, and shapefiles for spatial data. Users can indicate what kind of files to output by using TRUE or FALSE. The code below outputs three of the four file types. (The code for XML is broken sat the moment.)
+A generic save function is included in the package if you want to use it. It can write four types of files: Rds, an R file format, XML, CSV, and shapefiles for spatial data. Users can indicate what kind of files to output by using TRUE or FALSE. The code below outputs three of the four file types. (The code for XML is broken at the moment.)
 
 ```{r saving, eval=FALSE}
 # at this time, the XML file (when working) does not incorporate CDC metadata

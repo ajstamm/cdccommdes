@@ -27,5 +27,7 @@ knitr::opts_chunk$set(
 ## ----saving, eval=FALSE-------------------------------------------------------
 #  # at this time, the XML file does not incorporate CDC metadata
 #  save_generic(filename = "tract_safety_indicators", dataset = f,
-#               savepath = my_path)
+#               savepath = my_path,
+#               rds = TRUE, xml = TRUE,
+#               shp = TRUE, csv = TRUE)
 

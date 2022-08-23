@@ -41,26 +41,26 @@ process_poverty <- function(readpath, gdb_name, layer_name) {
   # add people in poverty and all people
   # from the lookup table: B17021,0055,1 = total individuals (B17021e1)
   #                        B17021,0055,2 = below poverty     (B17021e2)
-  sf <- dplyr::rename(sf, HHPov = !!dplyr::sym("B17017e2"),
-                      HHTotal = !!dplyr::sym("B17017e1"),
-                      PopPov = !!dplyr::sym("B17021e2"),
-                      PopTotal = !!dplyr::sym("B17021e1"))
+  sf <- dplyr::rename(sf, HHPov = !!dplyr::sym("B17002e8"),
+                      HHTotal = !!dplyr::sym("B17017e2"),
+                      Pop200Pov = !!dplyr::sym("C17002e1"),
+                      PopCount = !!dplyr::sym("B17017e1"))
   sf <- dplyr::select(sf, !!dplyr::sym("Year"), !!dplyr::sym("GEOID"),
                       !!dplyr::sym("HHPov"), !!dplyr::sym("HHTotal"),
-                      !!dplyr::sym("PopPov"), !!dplyr::sym("PopTotal"))
+                      !!dplyr::sym("Pop200Pov"), !!dplyr::sym("PopCount"))
   sf <- dplyr::mutate(sf,
           PctHHPov = 100 * !!dplyr::sym("HHPov") / !!dplyr::sym("HHTotal"),
           PctHHPov = ifelse(!is.finite(!!dplyr::sym("PctHHPov")), 0,
                              !!dplyr::sym("PctHHPov")),
-          PctPopPov = 100 * !!dplyr::sym("PopPov") / !!dplyr::sym("PopTotal"),
+          PctPopPov = 100 * !!dplyr::sym("Pop200Pov") / !!dplyr::sym("PopCount"),
           PctPopPov = ifelse(!is.finite(!!dplyr::sym("PctPopPov")), 0,
                             !!dplyr::sym("PctPopPov")),
           RowIdentifier = dplyr::row_number())
   # still a simple feature
-  sf <- dplyr::select(sf, !!dplyr::sym("RowIdentifier"), !!dplyr::sym("Year"),
-                      !!dplyr::sym("GEOID"), !!dplyr::sym("HHTotal"),
+  sf <- dplyr::select(sf, !!dplyr::sym("RowIdentifier"), !!dplyr::sym("PopCount"),
+                      !!dplyr::sym("Pop200Pov"), !!dplyr::sym("HHTotal"),
                       !!dplyr::sym("HHPov"), !!dplyr::sym("PctHHPov"),
-                      !!dplyr::sym("PopTotal"), !!dplyr::sym("PopPov"),
-                      !!dplyr::sym("PctPopPov"))
+                      !!dplyr::sym("PctPopPov"), !!dplyr::sym("Year"),
+                      !!dplyr::sym("GEOID"))
   return(sf)
 }

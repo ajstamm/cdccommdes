@@ -5,3 +5,5 @@ inst/doc/**
 
 ^.Renviron$
 .Rproj.user
+/doc/
+/Meta/
