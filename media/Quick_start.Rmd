@@ -1,0 +1,93 @@
+---
+title: "Installing CDIPP"
+author: "Abigail Stamm, New York State Department of Health"
+output: 
+  pdf_document:
+    toc: FALSE
+    keep_tex: TRUE
+header-includes:
+  - \setsansfont{Arial}
+  - \setromanfont{Times New Roman}
+  - \setmonofont{Lucida Console}
+  - \setmainfont{Arial}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyfoot[CO,CE]{Draft revision \today}
+  - \fancyfoot[LE,RO]{\thepage}
+  - \fancypagestyle{plain}{\pagestyle{fancy}}
+  - \fancyhead[CO,CE]{}
+  - \fancyhead[LO,LE]{}
+  - \fancyhead[RO,RE]{}
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# About the Community Design Indicator Processing Package (CDIPP)
+
+CDIPP was created to automate creation of the built environment indicators developed by the CDC Community Design workgroup. CDIPP is installed and run as a package in R. Before you can use CDIPP, you will need to install R.
+
+# Installing R
+
+You can download R at [https://www.r-project.org/](https://www.r-project.org/). Click on *download R* and select any site on the list. From there, choose your platform, then click on *base*. Next, click on the download link to download R. 
+
+# Installing RStudio (optional)
+
+After you have installed R, you can install RStudio, which is a wrapper that makes R more user-friendly and adds functionality, such as support for Markdown and Shiny and dedicated tabs for environments, tables, and images. RStudio **is not** required to run CDIPP.
+
+Download RStudio from [https://rstudio.com/products/rstudio/download/](https://rstudio.com/products/rstudio/download/). Under "RStudio Desktop Open Source License Free", click *Download*. Then click on the button, *Download RStudio for Windows*. After you have downloaded the file, install it as you would any other software program.
+
+# Installing CDIPP
+
+CDIPP was compiled in R version 4.2 using RStudio and devtools, but may work in earlier versions of R. 
+
+Before installing CDIPP, install the necessary packages (or check that you have them installed). One way to do this is run the following code in your R console:
+
+```{r, eval = FALSE}
+libs <- c("arcpullr", "classInt", "dplyr", "xml2", "raster", "methods", "sf", 
+          "leaflet", "tigris", "utils", "knitr")
+req <- unlist(lapply(libs, require, character.only = TRUE))
+req <- libs[!req]
+if (length(req) > 0) for (i in 1:length(req)) install.packages(req[i])
+rm(req, libs, i)
+```
+ 
+
+Save the zip file for CDIPP. It will have a name like "cdccommdes_\<ver>.tar.gz" where \<ver> will be the package version number. To install CDIPP using **base R**, click on "Packages" > "Install package(s) from local files...". Navigate to the file, click "Open", and wait. To install CDIPP through **RStudio**, click on "Tools" > "Install Packages...". In the "Install from:" drop-down, select "Package Archive File". In the dialog, select the file (you may need to click the "Browse..." button first). Click "Install" and wait.
+
+\pagebreak
+
+# Using CDIPP
+
+If you have not used CDIPP before, follow the embedded tutorial vignettes to learn how CDIPP works. Access the tutorials by running the code,
+
+```{r, eval = FALSE}
+browseVignettes("cdccommdes")
+
+```
+
+As of this writing, there are two tutorials embedded in CDIPP.
+
+1. Calculate the FARS traffic safety indicators
+2. Calculate the Community Design poverty indicator
+
+To access each tutorial, click on its "HTML" link. Then follow the indicator's instructions. Note that some indicators will require you to download data and set up folders in advance. All instructions are laid out in the tutorials.
+
+
+# Uninstalling CDIPP
+
+
+To uninstall `cdccommdes`, run the code, 
+```{r, eval = FALSE}
+remove.packages("cdccommdes")
+
+```
+
+
+
+
+
+
+
