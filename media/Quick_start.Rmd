@@ -31,6 +31,8 @@ CDIPP was created to automate creation of the built environment indicators devel
 
 # Installing R
 
+CDIPP was compiled in R version 4.2 using RStudio and devtools, but may work in earlier versions of R. 
+
 You can download R at [https://www.r-project.org/](https://www.r-project.org/). Click on *download R* and select any site on the list. From there, choose your platform, then click on *base*. Next, click on the download link to download R. 
 
 # Installing RStudio (optional)
@@ -39,9 +41,22 @@ After you have installed R, you can install RStudio, which is a wrapper that mak
 
 Download RStudio from [https://rstudio.com/products/rstudio/download/](https://rstudio.com/products/rstudio/download/). Under "RStudio Desktop Open Source License Free", click *Download*. Then click on the button, *Download RStudio for Windows*. After you have downloaded the file, install it as you would any other software program.
 
-# Installing CDIPP
+# Installing CDIPP automatically
 
-CDIPP was compiled in R version 4.2 using RStudio and devtools, but may work in earlier versions of R. 
+To install CDIPP via GitHub, you will need access to GitHub via R. Run the code below to install. If the install does not work, see the next section.
+
+```{r, eval = FALSE}
+# install devtools if you don't already have it
+install.packages("devtools")
+# install the package from Github with all required packages from CRAN
+devtools::install_github("ajstamm/cdccommdes", dependencies = TRUE)
+
+```
+
+\pagebreak
+
+
+# Installing CDIPP manually
 
 Before installing CDIPP, install the necessary packages (or check that you have them installed). One way to do this is run the following code in your R console:
 
@@ -55,9 +70,11 @@ rm(req, libs, i)
 ```
  
 
-Save the zip file for CDIPP. It will have a name like "cdccommdes_\<ver>.tar.gz" where \<ver> will be the package version number. To install CDIPP using **base R**, click on "Packages" > "Install package(s) from local files...". Navigate to the file, click "Open", and wait. To install CDIPP through **RStudio**, click on "Tools" > "Install Packages...". In the "Install from:" drop-down, select "Package Archive File". In the dialog, select the file (you may need to click the "Browse..." button first). Click "Install" and wait.
+Save the zip file for CDIPP. It will have a name like "cdccommdes_\<ver>.tar.gz" where \<ver> will be the package version number. 
 
-\pagebreak
+To install CDIPP using **base R**, click on "Packages" > "Install package(s) from local files...". Navigate to the file, click "Open", and wait. 
+
+To install CDIPP through **RStudio**, click on "Tools" > "Install Packages...". In the "Install from:" drop-down, select "Package Archive File". In the dialog, select the file (you may need to click the "Browse..." button first). Click "Install" and wait.
 
 # Using CDIPP
 
