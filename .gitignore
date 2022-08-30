@@ -7,7 +7,6 @@ inst/doc/**
 .Rproj.user
 
 Meta/**
-*.gz
 *.aux
 *.log
 *.tex

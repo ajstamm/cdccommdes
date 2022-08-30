@@ -1,9 +1,28 @@
 # Community Design Indicator Processing Package (CDIPP)
 
-This package was developed by Abigail Stamm (NYS) with coding and documentation assistance from Eleni Mora (UT) and Margaret Horton (CO). At present, it includes the traffic fatality and poverty indicators, which both are functional, but require further testing. 
+This package was developed by Abigail Stamm (NYS) with coding and documentation assistance from Eleni Mora (UT) and Margaret Horton (CO). At present, it includes the traffic fatality and poverty indicators, which both are functional, but require further testing. The package is considered to be in alpha.
+
+## How to install
+
+Run the code below in R to install CDIPP directly from GitHub.
+
+``` r
+# install devtools if you don't already have it
+install.packages("devtools")
+# install CDIPP from Github with all required packages from CRAN
+devtools::install_github("ajstamm/cdccommdes", dependencies = TRUE)
+```
 
 
-Working:
+If running the code above doesn't work, you can also install CDIPP manually. 
+Download the most recently 
+[compiled version of CDIPP](https://github.com/ajstamm/cdccommdes/blob/main/media/cdccommdes_0.1.6.tar.gz), 
+then download and follow instructions on 
+[how to install CDIPP](https://github.com/ajstamm/cdccommdes/blob/main/media/Quick_start.pdf), 
+including a list of required R packages on CRAN.
+
+
+## What works
 
 * All FARS and poverty functions. Exported. To access, run:
     * `process_fars()`: calculate vehicle-related deaths by tract
@@ -18,7 +37,7 @@ Working:
 * The following generic functions. Exported, but buggy. To access, run:
     * `save_generic()`: save your file as CSV, shapefile, Rds, or XML (XML doesn't work currently)
 
-Needed updates:
+## What needs to be updated
 
 * Look into using the package `tidycensus` to streamline poverty indicators over time.
 * Look into using the package `osmdata` to read OpenStreetMap?
