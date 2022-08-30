@@ -2,23 +2,25 @@
 
 This package was developed by Abigail Stamm (NYS) with coding and documentation assistance from Eleni Mora (UT) and Margaret Horton (CO). At present, it includes the traffic fatality and poverty indicators, which both are functional, but require further testing. 
 
-In attempts to compile the package, all traffic safety functions (FARS and poverty) have been converted to sf. I removed the magrittr import - I'll see if it throws any errors.
 
-Working and converted to sf:
+Working:
 
-* All FARS and poverty functions. To access them, run:
+* All FARS and poverty functions. Exported. To access, run:
     * `process_fars()`: calculate vehicle-related deaths by tract
     * `process_poverty()`: calculate poverty by tract
 * The following intersection density functions (not yet exported as the indicator is incomplete):
     * `read_land_areas()`: read in protected land
     * `read_water_areas()`: read in all water bodies
-    * read_streets()
+    * `read_streets()`
 * The following VMT functions (not yet exported as the indicator is incomplete):
     * `read_tracts()`: read census tracts
     * `prep_arc_aadt()`: read ArcGIS Online data
+* The following generic functions. Exported, but buggy. To access, run:
+    * `save_generic()`: save your file as CSV, shapefile, Rds, or XML (XML doesn't work currently)
 
 Needed updates:
 
+* Look into using the package `tidycensus` to streamline poverty indicators over time.
 * Look into using the package `osmdata` to read OpenStreetMap?
     * Reasons Abby doesn't think this will work: 
         1. This package uses OSM's API to pull all objects that overlap a literal box around a user-defined geography. As a result, when I pull data for, say, Staten Island in NYC, I also get objects in NJ close to Staten Island. On the plus side, it's easy to deduplicate if you pull two neighboring areas, since the package pulls objects that intersect the box without clipping them to fit inside the box first, but it pulls a lot of unnecessary data.
@@ -31,13 +33,9 @@ Needed updates:
 * add option for using FARS API in `read_fars` (and, correspondingly, `process_fars`)
 * add and/or revise vignettes (only traffic safety and poverty done, but they're bare-bones)
 * flesh out the package help page (if you type `?cdccommdes`)
-* package name: keep cdccommdes and add new indicators as available
-* Package future: Aaron is looking into this. Abby and Margaret think CDC should be copyright holder. Not sure about hosting, but maintenance may fall under SND umbrella at some point (Margaret and Abby at the moment, though)
-    * Who will host it?
-    * Who will maintain it?
-* add acknowledgements, funder, license as CDC
-    * will need feedback from others on authorship and attribution (see [gatpkg](https://ajstamm.github.io/gatpkg/docs/dev/reference/gatpkg.html) for an example)
-    * figure out the license (I have copied [GAT's MIT license](https://github.com/ajstamm/gatpkg/blob/master/LICENSE), but who is the copyright holder?)
+* Package future: 
+    * Who will host it? looking into CDC
+    * Who will maintain it? currently ad hoc (Margaret, Abby, Rick, Eric, Aaron, with Lyle as support)
 
 
 ## Acknowledgements
