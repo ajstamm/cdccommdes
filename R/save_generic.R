@@ -33,19 +33,15 @@
 save_generic <- function(dataset, filename, savepath = "", rds = TRUE,
                          xml = FALSE, shp = FALSE, csv = TRUE) {
   file_name <- paste(filename, Sys.Date(), sep = "_") # filename without extension
-  if (savepath == "") {
-    savepath <- "saves"
-  }
+  if (savepath == "") savepath <- "saves"
   savepath <- gsub("/$", "", savepath)
   file_path <- paste(savepath, file_name, sep = "/") # file path & name
 
-  if (rds) {
-    # save object as is (could be DF or SF)
-    saveRDS(dataset, paste0(file_path, ".Rds"))
-  }
+  if (rds) saveRDS(dataset, paste0(file_path, ".Rds"))
   if (xml) {
-    d <- data.frame(dataset)
-    xml2::write_xml(d, paste0(file_path, ".xml"))
+    # I found a hacky workaround at https://github.com/r-lib/xml2/issues/213,
+    # but it performs very poorly for large datasets
+    # still searching for a better solution
   }
   if (csv) {
     d <- data.frame(dataset)
